@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Login - Gutenberg Analyzer{% endblock %}
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Login</h1>
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-semibold shadow-md hover:shadow-lg">
+                Login
+            </button>
+        </form>
+        <p class="mt-6 text-gray-600 text-center">
+            Don't have an account? Contact the admin to create one.
+        </p>
+    </div>
+</div>
+{% endblock %}

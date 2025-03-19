@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}{{ title|default:"No Title"|title }} - Gutenberg Analyzer{% endblock %}
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center bg-gray-200 py-2 px-4 rounded-lg">
+        {{ title|default:"No Title"|title }}
+    </h1>
+
+    <div class="space-y-4">
+        <div class="flex justify-between items-center">
+            <span class="text-sm font-medium text-gray-600">Author:</span>
+            <span class="text-lg text-gray-800">{{ author|default:"Unknown" }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+            <span class="text-sm font-medium text-gray-600">Book ID:</span>
+            <span class="text-lg text-gray-800">{{ book.book_id }}</span>
+        </div>
+    </div>
+
+    <div class="mt-6">
+        <p class="text-gray-700 text-sm leading-relaxed" id="text-preview">{{ book.text|slice:":500" }}...</p>
+        <p class="text-gray-700 text-sm leading-relaxed hidden" id="full-text">{{ book.text }}</p>
+    </div>
+
+    <div class="mt-6 flex justify-center">
+        <button id="toggle-text" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-semibold">
+            See More Content
+        </button>
+    </div>
+
+    <div class="mt-6 flex justify-center space-x-4">
+        <a href="{% url 'analyze_book' book_id=book.book_id analysis_type='summary' %}"
+           class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors duration-300 font-semibold">
+            Generate Summary
+        </a>
+        <a href="{% url 'analyze_book' book_id=book.book_id analysis_type='characters' %}"
+           class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors duration-300 font-semibold">
+            List Characters
+        </a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('toggle-text').addEventListener('click', function() {
+        const preview = document.getElementById('text-preview');
+        const fullText = document.getElementById('full-text');
+        if (fullText.classList.contains('hidden')) {
+            fullText.classList.remove('hidden');
+            preview.classList.add('hidden');
+            this.textContent = 'See Less Content';
+        } else {
+            fullText.classList.add('hidden');
+            preview.classList.remove('hidden');
+            this.textContent = 'See More Content';
+        }
+    });
+</script>
+{% endblock %}

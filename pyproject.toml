@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "gutenberg-analyzer"
+version = "0.1.0"
+description = ""
+authors = ["gixion1010 <121560528+gixion1010@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.7"
+dotenv = "^0.9.9"
+openai = "^1.66.5"
+requests = "^2.32.3"
+bs4 = "^0.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

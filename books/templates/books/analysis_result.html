@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{ analysis_type|capfirst }} Result - Gutenberg Analyzer{% endblock %}
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl mx-auto">
+    <h1 class="text-4xl font-bold text-gray-900 mb-8 text-center bg-gray-200 py-2 px-4 rounded-lg">
+        {{ analysis_type|capfirst }} Result for "{{ title|default:"No Title"|title }}"
+    </h1>
+
+    <div class="space-y-6">
+        <p class="text-gray-800 text-base leading-relaxed">{{ result }}</p>
+    </div>
+
+    <div class="mt-8 flex justify-center">
+        <a href="{% url 'book_detail' book_id=book.book_id %}"
+           class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300 font-semibold shadow-md hover:shadow-lg">
+            Back to Book
+        </a>
+    </div>
+</div>
+{% endblock %}
